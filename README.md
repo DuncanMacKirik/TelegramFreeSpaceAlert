@@ -8,13 +8,17 @@ Primarily on Windows platforms, when you don't want to install Python/Node.js/Go
   
 ## Usage  
 ```TelegramFreeSpaceAlert /botToken=<Telegram_bot_token> /chatId=<Telegram_chat_id> [/compName=<custom_machine_name>] <drv>:=<limit>...```  
-<drv>: drive letter
-<limit>: lower free space limit to check against. Can have suffixes K, M, G, T for Kibi-, Mebi-, Gibi-, and Tebibytes respectively (base-1024, Kilo-, Mega- and others being base-1000 nowadays).  
+\<drv\>: drive letter
+\<limit\>: lower free space limit to check against. Can have suffixes K, M, G, T for Kibi-, Mebi-, Gibi-, and Tebibytes respectively (base-1024, Kilo-, Mega- and others being base-1000 nowadays).  
 Example:   
-```TelegramFreeSpaceAlert /botToken=XXXX:YYYYYY /chatId=ZZZZZ C:=80G```   
+```
+TelegramFreeSpaceAlert /botToken=XXXX:YYYYYY /chatId=ZZZZZ C:=80G
+```  
 Explanation: when run, if free space on drive C: is less than 80 Gibibytes, the app will send the following message via Telegram to the specified chat:  
-```ALERT from DESKTOP-DX291:  
-Disk space on drive C: = 47 GB (limit = 80 GB)```  
+```
+ALERT from DESKTOP-DX291:  
+Disk space on drive C: = 47 GB (limit = 80 GB)
+```  
 You can set a more descriptive machine name like this:   
 ```TelegramFreeSpaceAlert /botToken=XXXX:YYYYYY /chatId=ZZZZZ /compName=Office-2nd-Floor C:=80G```   
 Limits can be set for multiple drives, eg.  
