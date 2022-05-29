@@ -171,11 +171,19 @@ begin
                FSL := FSL * SPC_1GB;
           if FSU = 'T' then
                FSL := FSL * SPC_1TB;
-          FDS := GetFreeDiskSpace(Folder);
-          if FDS < FSL then
-          begin
-               Msg := Msg + Format('Disk space on drive %s = %.02f GB (limit = %.02f GB)',
-                    [drv, FDS / Int64(SPC_1GB), FSL / Int64(SPC_1GB)], TFormatSettings.Invariant) + #10;
+          try
+               FDS := GetFreeDiskSpace(Folder);
+               if FDS < FSL then
+               begin
+                    Msg := Msg + Format('Disk space on drive %s = %.02f GB (limit = %.02f GB)'#10,
+                         [drv, FDS / Int64(SPC_1GB), FSL / Int64(SPC_1GB)], TFormatSettings.Invariant);
+               end;
+          except
+               on E: Exception do
+               begin
+                    Msg := Msg + Format('ERROR when getting free disk space of drive %s :'#10'%s'#10,
+                         [drv, E.Message]);
+               end;
           end;
      end;
      if botToken = '' then
