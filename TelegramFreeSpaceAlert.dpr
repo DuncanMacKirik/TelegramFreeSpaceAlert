@@ -26,6 +26,10 @@ const
      SPC_1GB = 1024 * SPC_1MB;
      SPC_1TB: Int64 = 1024 * Int64(SPC_1GB);
 
+     //TGM_BOT_TOKEN = 'XXX';
+     //TGM_CHAT_ID = 'YYY';
+     //Presets: array of string = ['C:=16G', 'D:=40G'];
+
 procedure CheckResponseCode(const Code: Integer);
 begin
      if Code <> 200 then
@@ -121,12 +125,13 @@ var
      FSL, FDS: Int64;
      i: Integer;
      drv, Msg: string;
-     botToken, chatId: string;
+     botToken, chatId, compName: string;
 begin
      rgxFSL.Create('^([\d]+)([KMGT]?)$');
      Msg := '';
      botToken := '';
      chatId := '';
+     compName := '';
      for i := 1 to ParamCount do
      begin
           Preset := ParamStr(i);
@@ -140,6 +145,9 @@ begin
                else
                if Params[0].ToUpper = 'CHATID' then
                     chatId := Params[1]
+               else
+               if Params[0].ToUpper = 'COMPNAME' then
+                    compName := Params[1]
                else
                     raise EArgumentException.Create('Unknown option');
                Continue;
@@ -174,9 +182,11 @@ begin
           raise EArgumentNilException.Create('No bot token specified');
      if chatId = '' then
           raise EArgumentNilException.Create('No chat ID specified');
+     if compName = '' then
+          compName := GetHostName;
      if Msg <> '' then
      begin
-          Msg := 'ALERT from ' + GetHostname + ':' + #10 + Msg;
+          Msg := 'ALERT from ' + compName + ':' + #10 + Msg;
           SendAlert(botToken, chatId, Msg);
      end;
 end.
