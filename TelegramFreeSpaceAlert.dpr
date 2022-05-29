@@ -26,10 +26,6 @@ const
      SPC_1GB = 1024 * SPC_1MB;
      SPC_1TB: Int64 = 1024 * Int64(SPC_1GB);
 
-     //TGM_BOT_TOKEN = 'XXX';
-     //TGM_CHAT_ID = 'YYY';
-     //Presets: array of string = ['C:=16G', 'D:=40G'];
-
 procedure CheckResponseCode(const Code: Integer);
 begin
      if Code <> 200 then
