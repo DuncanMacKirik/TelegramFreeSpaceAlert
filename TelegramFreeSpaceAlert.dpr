@@ -116,7 +116,7 @@ begin
      end;
 end;
 
-
+procedure Main;
 var
      Preset, Folder, FreeSpace, FSU: string;
      Params: TArray<string>;
@@ -196,5 +196,17 @@ begin
      begin
           Msg := 'ALERT from ' + compName + ':' + #10 + Msg;
           SendAlert(botToken, chatId, Msg);
+     end;
+end;
+
+begin
+     try
+          Main;
+     except
+          on E: Exception do
+          begin
+               WriteLn('ERROR: ', E.Message);
+               Halt(E.GetHashCode and $FF);
+          end;
      end;
 end.
