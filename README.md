@@ -5,6 +5,9 @@ A simple program to be run as a scheduled task, and to send notifications via Te
   
 ## Why use it?  
 Primarily on Windows platforms, when you don't want to install Python/Node.js/Go/Ruby just to run a simple script. There are always VBScript and Powershell, but I rarely saw them used for this purpose.
+
+## Current status
+4/5 (mostly done/beta version). Buildable and usable, but there is certainly more room for improvement.
   
 ## Usage  
 ```TelegramFreeSpaceAlert /botToken=<Telegram_bot_token> /chatId=<Telegram_chat_id> [/compName=<custom_machine_name>] <drv>:=<limit>...```  
